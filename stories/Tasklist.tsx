@@ -1,81 +1,79 @@
-// import React from "react"
-// import { Task, TaskProps } from "./Task"
+import { useState } from "react"
+import { Task, TaskProps } from "./Task"
+
+export const taskArray: TaskProps[] = [
+    {
+        // why does this break when I add parentheses to whenChild? 
+        whenChildCheckboxClicked: whenChildCheckboxClicked,
+        completeState: true,
+        title: "Task 1",
+        description: "this is the description of a very fun task"
+    },
+    {
+        whenChildCheckboxClicked: whenChildCheckboxClicked,
+        completeState: false,
+        title: "Task 2",
+        description: "this is a not so fun task"
+    }
+
+]
 
 
 
-// const taskDummyData= [
-//     {
+// map function that renders props in each task into a task component
+// which then gets rendered in tasklist (by the map function)
 
-//         title: "Sweep the Kitchen",
-//         description: "Get under the cabinets, do a good job",
-//         completeStatus: false
-//     },
+function mapTaskPropsToTask({ whenChildCheckboxClicked: updateState, completeState, title, description }: TaskProps, index: number) {
+    return (
+        <Task whenChildCheckboxClicked={whenChildCheckboxClicked} completeState={completeState} title={title} description={description} />
+    )
 
-//     {
-
-//         title: "Wash the Dishes",
-//         description: "Use hot water and soap",
-//         completeStatus: false
-//     },
-//     {
-
-//         title: "Mow the Lawn",
-//         description: "Don't forget the edges",
-//         completeStatus: false
-//     },
-//     {
-
-//         title: "Do the Laundry",
-//         description: "Separate colors and whites",
-//         completeStatus: false
-//     },
-//     {
-//         title: "Organize the Garage",
-//         description: "Sort tools and equipment",
-//         completeStatus: false
-//     }
-// ]
-
-// export default function TaskList() {
-// const deployDummyData= taskDummyData.map(
-//     (item)=> {
-//         <Task completeStatus={item.completeStatus} title={item.title} description={item.description} 
-//         />
-//     }
-// )
-
-//     return (
-//         <>
-//         {deployDummyData}
-//         </>
-//     )
-// }
-// 
-// 
-// 
-// 
-// 
-
-const Task = () => {
-    return
-    <div className=" flex flex-row">
-        <input type="checkbox" />
-        <div className= "flex flex-cpl">
-            <h3>Task Title</h3>
-            <p>
-                Task description
-            </p>
-        </div>
-    </div>
 }
 
-function TaskList() {
-    return(
+export function whenChildCheckboxClicked() {
+
+    //updating the tasklist array and its child components
+    // the way that it does that, is by editing the state variable
+
+    console.log("hello")
+
+    // looks wrong, feels wrong!
+
+}
+
+
+export const TaskList = () => {
+
+    const [TaskList, whenChildCheckboxClicked] = useState([])
+
+
+    return (
         <div>
-            <h2>TaskList</h2>
-            <Task />
+            {taskArray.map(mapTaskPropsToTask)}
         </div>
     )
+
+
 }
 
+/*
 
+Alright it's time to create a TaskList.
+
+What's the correct datastructure for a tasklist? 
+An array of tasks.
+
+Each task will have props specific to itself.
+
+We can include a dummyData array which contains several tasks 
+The TaskListProps will be 
+
+The taskList will also need to be sorted by completion.
+
+So, there needs to be some way to dynamically detect when a task's completion
+has been updated and change the state of the tasklist when that happens.
+
+I think the first step that I need to take before building tasklist is 
+to make the tasks' checkboxes themselves clickable. 
+
+*/

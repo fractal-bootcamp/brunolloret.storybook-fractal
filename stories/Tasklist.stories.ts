@@ -1,12 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Tasklist from './Tasklist';
+import type { Meta, StoryObj } from '@storybook/react'
+//question - what is meta doing? 
 
-const meta: Meta<typeof Tasklist> = {
-    component: Tasklist,
-};
+import { Task } from "./Task";
+import { TaskList } from "./TaskList";
+
+const meta: Meta<typeof TaskList> = {
+    title: 'TaskList / TaskList',
+    component: TaskList
+}
 
 export default meta;
-type Story = StoryObj<typeof Tasklist>;
+type Story = StoryObj<typeof TaskList>;
 
-export const DefaultList: Story = {}
+export const Default: Story = {
 
+}
+
+// unsorted and sorted states ?
